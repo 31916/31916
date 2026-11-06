@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "owner": "31916",
-  "generated_at": "2026-11-06T07:08:39Z",
+  "generated_at": "2026-11-06T07:13:25Z",
   "window": {
     "days": 90,
-    "from": "2026-08-08T07:08:39Z",
-    "to": "2026-11-06T07:08:39Z",
+    "from": "2026-08-08T07:13:25Z",
+    "to": "2026-11-06T07:13:25Z",
     "timezone": "Asia/Tokyo (UTC+09:00)"
   },
   "scope": {
