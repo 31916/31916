@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640">
+  <defs>
+    <path id="four" d="M36.4 5 37.4 5.5V42.5h10.4v-6H51V52h-3.2v-6H37.4v10.6h4.1V60h-21v-3.4h4.3V46H6v-3.3ZM24.8 24.5l-14.3 18h14.3z" fill-rule="evenodd" clip-rule="evenodd"/>
+    <clipPath id="outline"><use href="#four"/></clipPath>
+    <clipPath id="adjusted-slots">
+      <path d="M0 0H64V64H0Z M28.15 20.328H35V23.412H27.2V21.506Z M27.2 44.748H35V47.832H27.2Z M27.2 54.516H35V57.6H27.2Z" clip-rule="evenodd"/>
+    </clipPath>
+  </defs>
+  <rect width="640" height="640" rx="128" fill="#111"/>
+  <g transform="translate(119 135) scale(8) rotate(-60) translate(-36.4 -5)" clip-path="url(#outline)">
+    <g clip-path="url(#adjusted-slots)">
+      <path d="M0 13.644h64v1.8H0z M0 18.528H64V25.212H0Z M0 28.296h64v1.8H0z M0 33.18h64v1.8H0z M0 38.064h64v1.8H0z M0 42.948H64V49.632H0Z M0 52.716H64V60H0Z" fill="#ccc"/>
+      <use href="#four" fill="none" stroke="#ccc" stroke-width="4.8" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>

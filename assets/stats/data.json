@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "owner": "31916",
+  "generated_at": "2026-11-06T07:07:22Z",
+  "window": {
+    "days": 90,
+    "from": "2026-08-08T07:07:22Z",
+    "to": "2026-11-06T07:07:22Z",
+    "timezone": "Asia/Tokyo (UTC+09:00)"
+  },
+  "scope": {
+    "visibility": "public",
+    "ownership": "owned",
+    "forks": "excluded",
+    "profile_repository": "excluded",
+    "archived_repositories": "included",
+    "commits": "GitHub-attributed author; default branch; non-merge; unique SHA; author date within window",
+    "language_measure": "GitHub language bytes, not time or proficiency"
+  },
+  "repositories": [
+    {
+      "name": "31916.github.io",
+      "url": "https://github.com/31916/31916.github.io",
+      "default_branch": "main",
+      "archived": false,
+      "empty": false,
+      "language_bytes": {
+        "CSS": 28203,
+        "HTML": 61390,
+        "JavaScript": 10252,
+        "Python": 29445
+      }
+    },
+    {
+      "name": "himoparty",
+      "url": "https://github.com/31916/himoparty",
+      "default_branch": "main",
+      "archived": false,
+      "empty": false,
+      "language_bytes": {
+        "HTML": 5487,
+        "JavaScript": 117865,
+        "Processing": 30359,
+        "Python": 6653
+      }
+    },
+    {
+      "name": "ImeLayoutRouter",
+      "url": "https://github.com/31916/ImeLayoutRouter",
+      "default_branch": "V2",
+      "archived": false,
+      "empty": false,
+      "language_bytes": {
+        "C#": 205188,
+        "HTML": 1550,
+        "Inno Setup": 6278,
+        "JavaScript": 23360,
+        "PowerShell": 15067,
+        "Python": 27166
+      }
+    },
+    {
+      "name": "jikken3-kai",
+      "url": "https://github.com/31916/jikken3-kai",
+      "default_branch": "main",
+      "archived": false,
+      "empty": false,
+      "language_bytes": {
+        "CSS": 19445,
+        "HTML": 23437,
+        "JavaScript": 14320,
+        "Python": 13384
+      }
+    },
+    {
+      "name": "library-tla",
+      "url": "https://github.com/31916/library-tla",
+      "default_branch": "main",
+      "archived": false,
+      "empty": false,
+      "language_bytes": {
+        "TLA": 3591
+      }
+    },
+    {
+      "name": "syukei_recognize",
+      "url": "https://github.com/31916/syukei_recognize",
+      "default_branch": "main",
+      "archived": false,
+      "empty": false,
+      "language_bytes": {
+        "Python": 34163
+      }
+    }
+  ],
+  "languages": {
+    "total_bytes": 676603,
+    "items": [
+      {
+        "name": "C#",
+        "bytes": 205188,
+        "share_percent": 30.326203105809462
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 165797,
+        "share_percent": 24.504325283807493
+      },
+      {
+        "name": "Python",
+        "bytes": 110811,
+        "share_percent": 16.377550794188025
+      },
+      {
+        "name": "HTML",
+        "bytes": 91864,
+        "share_percent": 13.577238055403242
+      },
+      {
+        "name": "CSS",
+        "bytes": 47648,
+        "share_percent": 7.042238949576044
+      },
+      {
+        "name": "Processing",
+        "bytes": 30359,
+        "share_percent": 4.486973897544055
+      },
+      {
+        "name": "PowerShell",
+        "bytes": 15067,
+        "share_percent": 2.226859768579211
+      },
+      {
+        "name": "Inno Setup",
+        "bytes": 6278,
+        "share_percent": 0.9278705533377771
+      },
+      {
+        "name": "TLA",
+        "bytes": 3591,
+        "share_percent": 0.5307395917546922
+      }
+    ]
+  },
+  "activity": {
+    "commits": 193,
+    "active_days": 17,
+    "hourly_commits_jst": [
+      16,
+      16,
+      10,
+      9,
+      1,
+      0,
+      7,
+      5,
+      4,
+      9,
+      10,
+      5,
+      3,
+      4,
+      5,
+      4,
+      9,
+      6,
+      0,
+      4,
+      8,
+      12,
+      18,
+      28
+    ],
+    "weekday_commits_jst": [
+      27,
+      27,
+      55,
+      5,
+      49,
+      17,
+      13
+    ]
+  }
+}
