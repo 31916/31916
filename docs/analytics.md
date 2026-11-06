@@ -38,7 +38,7 @@ python scripts/update_stats.py --owner 31916
 
 The script uses `GITHUB_TOKEN` when set. Otherwise it uses an already authenticated `gh api` command. It never prints the token. For scheduled execution, a repository-scoped GitHub Actions token is sufficient: these API queries read only public resources, and the workflow commits only the generated files in this repository.
 
-The generator prepares every data file and all six localized SVGs before writing. A failed fetch or render therefore cannot replace the previous charts with a partial data set. If GitHub Actions is delayed or disabled, the visible update date remains the date of the last successful generation; the charts do not pretend to be live.
+The generator prepares the aggregate data file and four English SVGs before writing: a language chart and an activity chart, each with a desktop and compact layout. Compact files use a 420-pixel canvas and filenames ending in `-compact.svg`; they keep the same data, language percentages, 24 hourly bins, date range, and scope as the desktop charts. A failed fetch or render therefore cannot replace the previous charts with a partial data set. If GitHub Actions is delayed or disabled, the visible update date remains the date of the last successful generation; the charts do not pretend to be live.
 
 Use `--now 2026-11-06T00:00:00+09:00` to reproduce the time bounds during development. This does not freeze GitHub's repository content, so language bytes can still change between runs.
 

@@ -133,8 +133,8 @@ class StatisticsTests(unittest.TestCase):
             def pages(self, *args):
                 return iter([])
         data = stats.collect(EmptyApi(), "31916", self.end)
-        for locale in ("en", "ja", "de"):
-            for render in (stats.render_languages, stats.render_activity):
+        for locale in ("en",):
+            for render in (stats.render_languages, stats.render_activity, stats.render_languages_compact, stats.render_activity_compact):
                 value = render(data, locale)
                 ET.fromstring(value)
                 self.assertNotIn("nan", value.casefold())
@@ -150,12 +150,35 @@ class StatisticsTests(unittest.TestCase):
                 return iter([])
         data = stats.collect(EmptyApi(), "31916", self.end)
         files = stats.output_files(data)
-        self.assertEqual(len(files), 7)
+        self.assertEqual(set(files), {"data.json", "languages-en.svg", "activity-en.svg", "languages-en-compact.svg", "activity-en-compact.svg"})
         with tempfile.TemporaryDirectory() as directory:
             destination = Path(directory) / "stats"
             stats.write_outputs(files, destination)
             self.assertEqual(set(files), {path.name for path in destination.iterdir()})
             self.assertEqual(json.loads((destination / "data.json").read_text(encoding="utf-8")), data)
+
+    def test_compact_charts_keep_values_and_all_hour_bins(self):
+        class EmptyApi:
+            def pages(self, *args):
+                return iter([])
+        data = stats.collect(EmptyApi(), "31916", self.end)
+        data["languages"] = {"items": [{"name": "Java", "bytes": 70, "share_percent": 70.0}, {"name": "Python", "bytes": 30, "share_percent": 30.0}], "total_bytes": 100}
+        data["activity"]["hourly_commits_jst"] = list(range(24))
+        data["activity"]["commits"] = sum(range(24))
+        namespace = {"svg": "http://www.w3.org/2000/svg"}
+        for locale in ("en",):
+            language_svg = stats.render_languages_compact(data, locale)
+            activity_svg = stats.render_activity_compact(data, locale)
+            self.assertIn("70.0%", language_svg)
+            self.assertIn("30.0%", language_svg)
+            for value in (language_svg, activity_svg):
+                root = ET.fromstring(value)
+                self.assertEqual(root.attrib["width"], "420")
+                self.assertTrue(all(float(node.attrib["font-size"]) >= 14 for node in root.findall(".//svg:text", namespace)))
+            root = ET.fromstring(activity_svg)
+            bins = root.findall(".//svg:rect/svg:title", namespace)
+            self.assertEqual(len(bins), 24)
+            self.assertIn("23:00–23:59 JST: 23", bins[-1].text)
 
     def test_failed_fetch_preserves_last_successful_output(self):
         with tempfile.TemporaryDirectory() as directory:

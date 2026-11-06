@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="651" viewBox="0 0 420 651" role="img" aria-labelledby="title description">
+<title id="title">Public repository languages</title>
+<desc id="description">C#: 205188 bytes (30.326%); JavaScript: 165797 bytes (24.504%); Python: 110811 bytes (16.378%); HTML: 91864 bytes (13.577%); CSS: 47648 bytes (7.042%); Processing: 30359 bytes (4.487%); PowerShell: 15067 bytes (2.227%); Inno Setup: 6278 bytes (0.928%); TLA: 3591 bytes (0.531%)</desc>
+<rect width="420" height="651" rx="12" fill="#f6f8ff"/>
+<g font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Noto Sans, Noto Sans JP, Arial, sans-serif">
+<text x="22" y="36" font-size="20" fill="#183153" font-weight="600" text-anchor="start">Public repository languages</text>
+<text x="22" y="64" font-size="14" fill="#536888" font-weight="400" text-anchor="start">Share of language bytes</text>
+<text x="22" y="88" font-size="14" fill="#536888" font-weight="400" text-anchor="start">Public owned repositories: 6</text>
+<text x="22" y="110" font-size="14" fill="#536888" font-weight="400" text-anchor="start">Forks and profile excluded</text>
+<text x="22" y="146" font-size="16" fill="#183153" font-weight="400" text-anchor="start">C#</text>
+<text x="398" y="146" font-size="16" fill="#183153" font-weight="400" text-anchor="end">30.3%</text>
+<rect x="22" y="156" width="376" height="10" rx="3" fill="#e8eef9"/>
+<rect x="22" y="156" width="114.0265" height="10" rx="3" fill="#3478f6"/>
+<text x="22" y="194" font-size="16" fill="#183153" font-weight="400" text-anchor="start">JavaScript</text>
+<text x="398" y="194" font-size="16" fill="#183153" font-weight="400" text-anchor="end">24.5%</text>
+<rect x="22" y="204" width="376" height="10" rx="3" fill="#e8eef9"/>
+<rect x="22" y="204" width="92.1363" height="10" rx="3" fill="#3478f6"/>
+<text x="22" y="242" font-size="16" fill="#183153" font-weight="400" text-anchor="start">Python</text>
+<text x="398" y="242" font-size="16" fill="#183153" font-weight="400" text-anchor="end">16.4%</text>
+<rect x="22" y="252" width="376" height="10" rx="3" fill="#e8eef9"/>
+<rect x="22" y="252" width="61.5796" height="10" rx="3" fill="#3478f6"/>
+<text x="22" y="290" font-size="16" fill="#183153" font-weight="400" text-anchor="start">HTML</text>
+<text x="398" y="290" font-size="16" fill="#183153" font-weight="400" text-anchor="end">13.6%</text>
+<rect x="22" y="300" width="376" height="10" rx="3" fill="#e8eef9"/>
+<rect x="22" y="300" width="51.0504" height="10" rx="3" fill="#3478f6"/>
+<text x="22" y="338" font-size="16" fill="#183153" font-weight="400" text-anchor="start">CSS</text>
+<text x="398" y="338" font-size="16" fill="#183153" font-weight="400" text-anchor="end">7.0%</text>
+<rect x="22" y="348" width="376" height="10" rx="3" fill="#e8eef9"/>
+<rect x="22" y="348" width="26.4788" height="10" rx="3" fill="#3478f6"/>
+<text x="22" y="386" font-size="16" fill="#183153" font-weight="400" text-anchor="start">Processing</text>
+<text x="398" y="386" font-size="16" fill="#183153" font-weight="400" text-anchor="end">4.5%</text>
+<rect x="22" y="396" width="376" height="10" rx="3" fill="#e8eef9"/>
+<rect x="22" y="396" width="16.8710" height="10" rx="3" fill="#3478f6"/>
+<text x="22" y="434" font-size="16" fill="#183153" font-weight="400" text-anchor="start">PowerShell</text>
+<text x="398" y="434" font-size="16" fill="#183153" font-weight="400" text-anchor="end">2.2%</text>
+<rect x="22" y="444" width="376" height="10" rx="3" fill="#e8eef9"/>
+<rect x="22" y="444" width="8.3730" height="10" rx="3" fill="#3478f6"/>
+<text x="22" y="482" font-size="16" fill="#183153" font-weight="400" text-anchor="start">Inno Setup</text>
+<text x="398" y="482" font-size="16" fill="#183153" font-weight="400" text-anchor="end">0.9%</text>
+<rect x="22" y="492" width="376" height="10" rx="3" fill="#e8eef9"/>
+<rect x="22" y="492" width="3.4888" height="10" rx="3" fill="#3478f6"/>
+<text x="22" y="530" font-size="16" fill="#183153" font-weight="400" text-anchor="start">TLA</text>
+<text x="398" y="530" font-size="16" fill="#183153" font-weight="400" text-anchor="end">0.5%</text>
+<rect x="22" y="540" width="376" height="10" rx="3" fill="#e8eef9"/>
+<rect x="22" y="540" width="1.9956" height="10" rx="3" fill="#3478f6"/>
+<text x="22" y="586" font-size="14" fill="#536888" font-weight="400" text-anchor="start">Code share, not proficiency or time spent.</text>
+<text x="22" y="631" font-size="14" fill="#536888" font-weight="400" text-anchor="start">Updated 2026-11-06 · GitHub REST API</text>
+</g>
+</svg>

@@ -2,9 +2,7 @@
 
 # Harry.
 
-Haruto Kitagawa / 北川 温人
-
-**English** · [日本語](README.ja.md) · [Deutsch](README.de.md)
+Haruto Kitagawa
 
 [Portfolio](https://31916.ch/?lang=en) · [Resume](https://31916.ch/resume/?lang=en) · [Contact](https://31916.ch/?lang=en#contact)
 
@@ -40,7 +38,7 @@ Haruto Kitagawa / 北川 温人
 <p>
   <img src="assets/tech/c.svg" width="22" height="22" alt="" />&nbsp;C &nbsp;
   <img src="assets/tech/csharp.svg" width="22" height="22" alt="" />&nbsp;C# &nbsp;
-  <img src="assets/tech/java.svg" width="22" height="22" alt="" />&nbsp;Java &nbsp;
+  <img src="assets/tech/java.svg" width="22" height="22" alt="" />&nbsp;Java<br />
   <img src="assets/tech/python.svg" width="22" height="22" alt="" />&nbsp;Python &nbsp;
   <img src="assets/tech/javascript.svg" width="22" height="22" alt="" />&nbsp;JavaScript
 </p>
@@ -64,7 +62,7 @@ Haruto Kitagawa / 北川 温人
 
 <p>
   <img src="assets/tech/git.svg" width="22" height="22" alt="" />&nbsp;Git &nbsp;
-  <img src="assets/tech/github.svg" width="22" height="22" alt="" />&nbsp;GitHub &nbsp;
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/tech/github-light.svg" /><img src="assets/tech/github.svg" width="22" height="22" alt="" /></picture>&nbsp;GitHub &nbsp;
   <img src="assets/tech/linux.svg" width="22" height="22" alt="" />&nbsp;Linux
 </p>
 
@@ -72,8 +70,14 @@ Haruto Kitagawa / 北川 温人
 
 Language shares use code bytes in my public repositories, excluding forks and this profile repository. Commit timing shows commits authored by me on their default branches over the last 90 days, in Japan Standard Time (UTC+9). It does not measure working hours.
 
-<img src="assets/stats/languages-en.svg" width="760" alt="Language shares by code bytes in public repositories" />
+<picture>
+  <source media="(max-width: 600px)" srcset="assets/stats/languages-en-compact.svg" />
+  <img src="assets/stats/languages-en.svg" width="760" alt="Language shares by code bytes in public repositories" />
+</picture>
 
-<img src="assets/stats/activity-en.svg" width="760" alt="Commits by hour of day over the last 90 days, Japan Standard Time" />
+<picture>
+  <source media="(max-width: 600px)" srcset="assets/stats/activity-en-compact.svg" />
+  <img src="assets/stats/activity-en.svg" width="760" alt="Commits by hour of day over the last 90 days, Japan Standard Time" />
+</picture>
 
 Updated daily. [Data and methodology](docs/analytics.md)

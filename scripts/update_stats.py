@@ -246,36 +246,6 @@ LABELS = {
         "no_activity": "No matching public commits in this period.",
         "updated": "Updated",
     },
-    "ja": {
-        "languages": "公開リポジトリの使用言語",
-        "bytes": "言語別コード量の割合（バイト）",
-        "language_note": "コード量の構成比です。習熟度・使用時間ではありません。",
-        "activity": "コミットした時間帯",
-        "activity_scope": "デフォルトブランチの非マージコミット",
-        "activity_note": "作成者の記録時刻を日本時間で集計。作業時間を表すものではありません。",
-        "repositories": "件の本人所有の公開リポジトリ · フォーク・プロフィールを除外",
-        "commits": "コミット",
-        "days": "活動日",
-        "hours": "時刻 · 日本時間（UTC+09:00）",
-        "no_languages": "集計可能な言語データがありません。",
-        "no_activity": "この期間に対象の公開コミットはありません。",
-        "updated": "更新",
-    },
-    "de": {
-        "languages": "Sprachen in meinen öffentlichen Repositories",
-        "bytes": "Anteil am Sprachumfang in Bytes",
-        "language_note": "Code-Anteile, keine Aussage über Kenntnisse oder Arbeitszeit.",
-        "activity": "Wann ich committe",
-        "activity_scope": "Commits ohne Merges auf den Standardbranches",
-        "activity_note": "Autorenzeitpunkte in Japan-Zeit. Commit-Aktivität ist keine Arbeitszeit.",
-        "repositories": "eigene öffentliche Repositories · ohne Forks und Profil",
-        "commits": "Commits",
-        "days": "aktive Tage",
-        "hours": "Tageszeit · JST (UTC+09:00)",
-        "no_languages": "Keine Sprachdaten verfügbar.",
-        "no_activity": "Keine passenden öffentlichen Commits in diesem Zeitraum.",
-        "updated": "Stand",
-    },
 }
 
 
@@ -283,12 +253,12 @@ def text(x, y, value, size=16, color="text", weight=400, anchor="start"):
     return f'<text x="{x}" y="{y}" font-size="{size}" fill="{COLORS[color]}" font-weight="{weight}" text-anchor="{anchor}">{escape(str(value))}</text>'
 
 
-def svg_document(title: str, description: str, height: int, body: list[str]) -> str:
+def svg_document(title: str, description: str, height: int, body: list[str], width: int = 840) -> str:
     return "\n".join([
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="840" height="{height}" viewBox="0 0 840 {height}" role="img" aria-labelledby="title description">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title description">',
         f'<title id="title">{escape(title)}</title>',
         f'<desc id="description">{escape(description)}</desc>',
-        f'<rect width="840" height="{height}" rx="12" fill="{COLORS["background"]}"/>',
+        f'<rect width="{width}" height="{height}" rx="12" fill="{COLORS["background"]}"/>',
         '<g font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Noto Sans, Noto Sans JP, Arial, sans-serif">',
         *body, "</g>", "</svg>", "",
     ])
@@ -353,7 +323,7 @@ def render_activity(data: dict, locale: str) -> str:
     end = parse_time(data["window"]["to"]).astimezone(JST).strftime("%Y-%m-%d")
     body = [
         text(30, 40, labels["activity"], 24, weight=600),
-        text(30, 68, f'{start} – {end} · {data["window"]["days"]} days' if locale == "en" else f'{start} – {end} · {data["window"]["days"]} {"日間" if locale == "ja" else "Tage"}', 15, "muted"),
+        text(30, 68, f'{start} – {end} · {data["window"]["days"]} days', 15, "muted"),
         text(30, 105, f'{activity["commits"]:,} {labels["commits"]}   /   {activity["active_days"]} {labels["days"]}', 20, weight=600),
         text(30, 133, labels["activity_scope"], 13, "muted"),
         text(left, top - 16, labels["commits"], 12, "muted"),
@@ -383,11 +353,106 @@ def render_activity(data: dict, locale: str) -> str:
     return svg_document(labels["activity"], description, 477, body)
 
 
+COMPACT_LABELS = {
+    "en": {
+        "languages": "Public repository languages",
+        "scope": "Public owned repositories",
+        "excluded": "Forks and profile excluded",
+        "bytes": "Share of language bytes",
+        "language_note": ["Code share, not proficiency or time spent."],
+        "activity_scope": ["Default branches · non-merge commits"],
+        "activity_note": ["Author timestamps in Japan time.", "Commit activity is not working time."],
+    },
+}
+
+
+def render_languages_compact(data: dict, locale: str) -> str:
+    labels = LABELS[locale]
+    compact = COMPACT_LABELS[locale]
+    rows = data["languages"]["items"]
+    first_row = 146
+    row_height = 48
+    footer_top = first_row + max(1, len(rows)) * row_height + 8
+    height = footer_top + len(compact["language_note"]) * 22 + 43
+    body = [
+        text(22, 36, compact["languages"], 20, weight=600),
+        text(22, 64, compact["bytes"], 14, "muted"),
+        text(22, 88, f'{compact["scope"]}: {len(data["repositories"])}', 14, "muted"),
+        text(22, 110, compact["excluded"], 14, "muted"),
+    ]
+    if not rows:
+        body.append(text(22, first_row, labels["no_languages"], 16, "muted"))
+    for index, row in enumerate(rows):
+        baseline = first_row + index * row_height
+        value = row["share_percent"]
+        body.extend([
+            text(22, baseline, row["name"], 16),
+            text(398, baseline, number(value), 16, anchor="end"),
+            f'<rect x="22" y="{baseline + 10}" width="376" height="10" rx="3" fill="{COLORS["track"]}"/>',
+            f'<rect x="22" y="{baseline + 10}" width="{376 * value / 100:.4f}" height="10" rx="3" fill="{COLORS["bar"]}"/>',
+        ])
+    for index, note in enumerate(compact["language_note"]):
+        body.append(text(22, footer_top + index * 22, note, 14, "muted"))
+    update = parse_time(data["generated_at"]).astimezone(JST).strftime("%Y-%m-%d")
+    body.append(text(22, height - 20, f'{labels["updated"]} {update} · GitHub REST API', 14, "muted"))
+    description = "; ".join(f'{row["name"]}: {row["bytes"]} bytes ({row["share_percent"]:.3f}%)' for row in rows)
+    return svg_document(compact["languages"], description or labels["no_languages"], height, body, 420)
+
+
+def render_activity_compact(data: dict, locale: str) -> str:
+    labels = LABELS[locale]
+    compact = COMPACT_LABELS[locale]
+    activity = data["activity"]
+    hours = activity["hourly_commits_jst"]
+    left, top, plot_height = 46, 176, 136
+    step = 352 / 24
+    baseline = top + plot_height
+    maximum = nice_maximum(max(hours))
+    start = parse_time(data["window"]["from"]).astimezone(JST).strftime("%Y-%m-%d")
+    end = parse_time(data["window"]["to"]).astimezone(JST).strftime("%Y-%m-%d")
+    unit = "days"
+    body = [
+        text(22, 36, labels["activity"], 20, weight=600),
+        text(22, 64, f'{start} – {end}', 14, "muted"),
+        text(22, 88, f'{data["window"]["days"]} {unit} · {activity["commits"]:,} {labels["commits"]} · {activity["active_days"]} {labels["days"]}', 16, weight=600),
+        text(22, 116, compact["activity_scope"][0], 14, "muted"),
+        text(left, top - 18, labels["commits"], 14, "muted"),
+    ]
+    for tick in sorted(set([0, maximum // 2, maximum])):
+        y = baseline - plot_height * tick / maximum
+        body.extend([
+            f'<line x1="{left}" y1="{y}" x2="398" y2="{y}" stroke="{COLORS["grid"]}"/>',
+            text(left - 9, y + 5, f"{tick:,}", 14, "muted", anchor="end"),
+        ])
+    for hour, count in enumerate(hours):
+        x = left + hour * step
+        bar_height = plot_height * count / maximum
+        body.append(f'<rect x="{x + 2:.4f}" y="{baseline - bar_height:.4f}" width="{step - 4:.4f}" height="{bar_height:.4f}" rx="1" fill="{COLORS["bar"]}"><title>{hour:02d}:00–{hour:02d}:59 JST: {count} {escape(labels["commits"])}</title></rect>')
+        if hour in (0, 6, 12, 18, 23):
+            body.append(text(f"{x + step / 2:.4f}", baseline + 25, f"{hour:02d}", 14, "muted", anchor="middle"))
+    if not activity["commits"]:
+        empty_lines = ["No matching public commits", "in this period."]
+        for index, line in enumerate(empty_lines):
+            body.append(text(222, top + 56 + index * 23, line, 16, "muted", anchor="middle"))
+    body.append(text(222, baseline + 52, labels["hours"], 14, "muted", anchor="middle"))
+    for index, note in enumerate(compact["activity_note"]):
+        body.append(text(22, 401 + index * 22, note, 14, "muted"))
+    body.extend([
+        text(22, 455, f'{compact["scope"]}: {len(data["repositories"])}', 14, "muted"),
+        text(22, 477, compact["excluded"], 14, "muted"),
+        text(22, 509, f'{labels["updated"]} {end} · GitHub REST API', 14, "muted"),
+    ])
+    description = f'{start}–{end}, JST; ' + "; ".join(f'{hour:02d}: {count}' for hour, count in enumerate(hours))
+    return svg_document(labels["activity"], description, 531, body, 420)
+
+
 def output_files(data: dict) -> dict[str, str]:
     files = {"data.json": json.dumps(data, ensure_ascii=False, indent=2) + "\n"}
-    for locale in LABELS:
+    for locale in ("en",):
         files[f"languages-{locale}.svg"] = render_languages(data, locale)
         files[f"activity-{locale}.svg"] = render_activity(data, locale)
+        files[f"languages-{locale}-compact.svg"] = render_languages_compact(data, locale)
+        files[f"activity-{locale}-compact.svg"] = render_activity_compact(data, locale)
     return files
 
 

@@ -44,4 +44,3 @@ jobs:
           git commit -m "Refresh public profile analytics"
           git pull --rebase origin main
           git push origin HEAD:main
-
